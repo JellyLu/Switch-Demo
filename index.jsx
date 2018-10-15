@@ -1,14 +1,12 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import {
-  Router,
+  BrowserRouter as Router,
   Route,
   Link,
   Switch,
   Redirect
 } from "react-router-dom";
-import {createBrowserHistory} from 'history';
-const history = createBrowserHistory();
 
 const Home = () => (
   <p>
@@ -19,7 +17,7 @@ const Home = () => (
 );
 
 const NoMatchExample = () => (
-    <Router history={history}>
+    <Router>
       <div>
         <ul>
           <li>
@@ -40,6 +38,7 @@ const NoMatchExample = () => (
         </ul>
         <Switch>
           <Route path="/" exact component={Home} />
+            <Redirect from="/old-match" to="/will-match"/>
           <Route path="/will-match" component={WillMatch} />
           <Route component={NoMatch} />
         </Switch>
